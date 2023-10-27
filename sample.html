@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sample.css" />
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Quizia</a>
+        <nav class="navbar">
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="login.html">Login</a>
+        </nav>
+      </header>
+      <div class="box">
+        <h1>Create the Questions</h1>
+        <form>
+          <div class="field">
+            <label>Enter the Question</label>
+            <div>
+              <input name="name" type="text" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Option1</label>
+            <div>
+              <input name="opt1" type="text" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Option2</label>
+            <div>
+              <input name="opt2" type="text" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Option3</label>
+            <div>
+              <input name="opt3" type="text" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Option4</label>
+            <div>
+              <input name="opt4" type="text" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Correct Option</label>
+            <div>
+              <input name="crt" type="number" />
+            </div>
+          </div>
+        <div class="buttons">
+          <button class="right" type="submit">Finish</button>
+          <!-- <a class="right" href="#">Finish</a> -->
+        </div>
+        </form>
+      </div>
+     <!-- <form>
+        <div>
+            <label>Question</label>
+            <input type="text" name="name">
+        </div>
+        <div>
+            <label>Option1</label>
+            <input type="text" name="opt1">
+        </div>
+        <div>
+            <label>Option2</label>
+            <input type="text" name="opt2">
+        </div>
+        <div>
+            <label>Option3</label>
+            <input type="text" name="opt3">
+        </div>
+        <div>
+            <label>Option4</label>
+            <input type="text" name="opt4">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form> -->
+    <script>
+        const form = document.querySelector("form");
+        form.addEventListener("submit",(e) => {
+            e.preventDefault();
+            const fd = new FormData(form);
+            const obj = Object.fromEntries(fd);
+            const temp = [];
+            temp.push({"text":obj.opt1 , "correct":false})
+            temp.push({"text":obj.opt2 , "correct":false})
+            temp.push({"text":obj.opt3 , "correct":false})
+            temp.push({"text":obj.opt4 , "correct":false})
+            const o = temp[obj.crt-1];
+            o.correct = true;
+            const neww = { "question": obj.name , "answers": temp};
+            console.log(neww);
+            const json = JSON.stringify(neww);
+            localStorage.setItem('form',json);
+            window.location.href="options.html";
+        })
+    </script>
+</body>
+</html>

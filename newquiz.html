@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="newquiz.css" />
+    <title>Quizia</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="logo">Quizia</a>
+      <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+    <div class="box">
+      <h1>Create a Room</h1>
+      <form>
+        <div class="field">
+          <label>Room name</label>
+          <div>
+            <input id="rname" name="rname" type="text" />
+          </div>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <div>
+            <input id="rpass" name="rpass" type="password" />
+          </div>
+        </div>
+      <div class="buttons">
+        <button>Cancel</button>
+        <button class="right" type="submit">Create</button>
+        <!-- <a href="options.html">Cancel</a>
+        <a id="ri" class="right" href="sample.html">Create</a> -->
+      </div>
+      </form>
+    </div>
+    <script>
+      const form = document.querySelector("form");
+      form.addEventListener("submit",(e) => {
+          e.preventDefault();
+          const fd = new FormData(form);
+          const obj = Object.fromEntries(fd);
+          const json = JSON.stringify(obj);
+          console.log(obj);
+          localStorage.setItem('room',json);
+          window.location.href="sample.html"
+      })
+  </script>
+  </body>
+</html>
